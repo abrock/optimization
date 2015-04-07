@@ -1,0 +1,78 @@
+\input{mitschrift-header}
+
+Let $P_0, \cdots, P_3$ be the control points of curve $p$ and $P_0, Q_1, Q_2, P_3$
+the control points of curve $q$.
+We have $\|q(t)-p(t)\|$ over-estimates the true distance between the point $p(t)$ and the curve $q$,
+since the distance $\dist(q(t), p)$ is defined by $\min_{t'} \|p(t) - q(t')\|$.
+Therefore $\max_{t} \|p(t)-q(t)\|$ over-estimates $\max_t \dist(p(t), q)$.
+%
+\begin{align}
+\min_{t'} \|p(t)-q(t')\| &\leq \|p(t)-q(t)\| \\
+\RA \dist(p(t), q) &\leq \|p(t)-q(t)\| \\
+\RA \max_t \dist(p(t), q) &\leq \max_t \|p(t)-q(t)\|
+\end{align}
+
+\section{Calculating $\argmax_t {\|p(t)-q(t)\|_2^2}$}
+
+We calculate $\argmax_t {\|p(t)-q(t)\|_2^2}$:
+%
+\begin{align}
+\|p(t)-q(t)\|_2^2 &= \|(3(1-t)^2 t P_1 + 3 (1-t) t^2 P_2) - (3(1-t)^2 t Q_1 + 3(1-t) t^2 Q_2)\|_2^2 \\
+&= \|3(1-t)^2 t (P_1-Q_1) + 3 (1-t) t^2 (P_2 - Q_2)\|_2^2 \\
+&= 9 t^2 (1-t)^2 \| (1-t) (P_1-Q_1) + t (P_2 - Q_2)  \|_2^2 \\
+&= 9 t^2 (1-t)^2 \l\| \bpm (1-t) (P_{1x} - Q_{1x}) + t(P_{2x} - Q_{2x}) \\ (1-t) (P_{1y} - Q_{1y}) + t(P_{2y} - Q_{2y}) \epm \r\|_2^2
+\end{align}
+%
+For ease of calculation we introduce variable substitutions:
+%
+\begin{align}
+\alpha_{1x} :&= P_{1x} - Q_{1x} \\
+\alpha_{2x} :&= P_{2x} - Q_{2x} \\
+\alpha_{1y} :&= P_{1y} - Q_{1y} \\
+\alpha_{2y} :&= P_{2y} - Q_{2y} \\
+\RA \|p(t)-q(t)\|_2^2 &= 9 t^2 (1-t)^2 [ ((1-t)\alpha_{1x} + t \alpha_{2x})^2 + ((1-t)\alpha_{1y} + t \alpha_{2y})^2 ]
+\end{align}
+%
+Let's calculate the first derivative wrt. $t$ and see what we get:
+Well, we obviously get a polynomial of degree 3 and we need to find the roots which
+is no fun, so lets's do something else: Triangle inequality.
+
+\section{Using the triangle inequality}
+
+We have $\|a+b\| \leq \|a\| + \|b\|$ for any two vectors $a,b$ and any norm $\|\cdot\|$.
+Therefore:
+%
+\begin{align}
+\|p(t)-q(t)\| &= \|(3(1-t)^2 t P_1 + 3 (1-t) t^2 P_2) - (3(1-t)^2 t Q_1 + 3(1-t) t^2 Q_2)\| \\
+&\leq \|3(1-t)^2 t (P_1-Q_1)\| + \|3 (1-t) t^2 (P_2 - Q_2)\| =: \psi(t) \\
+&= 3(1-t)^2 t \underbrace{\|P_1-Q_1\|}_{:=\alpha_1} + 3 (1-t) t^2 \underbrace{\|P_2 - Q_2\|}_{\alpha_2} \\
+&= 3(1-t)^2 t \alpha_1 + 3 (1-t) t^2 \alpha_2 \\
+\end{align}
+%
+Now we have a upper bound $\psi(t)$ for each $t \in [0,1]$.
+We maximize it wrt. $t$ and obtain an upper bound for $\dist(p,q)$.
+%
+\begin{align}
+0 &= \partial_t [3(1-t)^2 t \alpha_1 + 3 (1-t) t^2 \alpha_2] \\
+\LRA 0 &= \partial_t [(1-2t+t^2)t \alpha_1 + (t^2-t^3) \alpha_2] \\
+\LRA 0 &= \partial_t [(t-2t^2+t^3) \alpha_1 + (t^2-t^3) \alpha_2] \\
+\LRA 0 &= (1 - 4t+3t^2) \alpha_1 + (2t-3t^2) \alpha_2 \\
+\LRA 0 &= \alpha_1 + (2\alpha_2 - 4 \alpha_1)t + (3 \alpha_1 - 3 \alpha_2)t^2 \\
+\end{align}
+%
+And that's just implementation stuff, calculate both roots $t_1, t_2$,
+the upper bound then is $\max \{\psi(t_1), \psi(t_2)\}$.
+$t_1$ and $t_2$ are probably good candidates for the actual time values
+maximizing the distance between $p$ and $q$, therefore one could
+calculate:
+%
+\begin{align}
+l_1 :&= \min_{t'} \|p(t_1)-q(t')\| \\
+l_2 :&= \min_{t'} \|p(t_2)-q(t')\| \\
+l_3 :&= \min_{t'} \|p(t')-q(t_1)\| \\
+l_4 :&= \min_{t'} \|p(t')-q(t_2)\| \\
+\end{align}
+%
+Then $\max \{l_1, l_2, l_3, l_4\}$ is a lower bound for the maximum distance of $p$ and $q$.
+
+\end{document}

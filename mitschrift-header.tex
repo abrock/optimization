@@ -1,0 +1,227 @@
+\documentclass{scrbook}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage{fontspec}
+\usepackage{amssymb, amsmath, microtype}
+\usepackage{dsfont, xspace}
+\usepackage{stmaryrd}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage[colorlinks]{hyperref}
+\definecolor{darkblue}{HTML}{016394}
+\definecolor{darkorange}{HTML}{B64E20}
+\definecolor{darkgreen}{HTML}{518928}
+\definecolor{darkyellow}{HTML}{917109}
+\definecolor{darkpurple}{HTML}{421c5d}
+\hypersetup{linkcolor=darkblue, citecolor=darkgreen, urlcolor=darkorange}
+%\usepackage{romannum}
+\usepackage[arrow, matrix, curve]{xy}
+
+%\title{Numerische Mathematik 2}
+%\author{Stephan Körkel}
+%\date{\today}
+
+\newcommand\dominiertvon{\prec}
+\newcommand\dominiert{\succ}
+
+\newcommand\Stab{\mathrm{Stab}}
+\newcommand\kranzprodukt{\wr}
+\newcommand\id{\mathrm{id}}
+\newcommand\isomorph{\tilde =}
+\newcommand\Aut{\mathrm{Aut}}
+\newcommand\Out{\mathrm{Out}}
+\newcommand\dist{\mathrm{dist}}
+\newcommand\Inn{\mathrm{Inn}}
+\newcommand\Gal{\mathrm{Gal}}
+\newcommand\Isom{\mathrm{Isom}}
+\newcommand\Hom{\mathrm{Hom}}
+\newcommand\Tau{\mathcal T}
+\newcommand\normal{\triangleleft}
+\newcommand\wirkt{\to}
+\newcommand\diam{\mathrm{diam}}
+\newcommand\vol{\mathrm{vol}}
+
+\newcommand\Bin{\mathrm{Bin}}
+\newcommand\WKeit{Wahrscheinlichkeit\xspace}
+\newcommand\hateq{\mathrel{\hat=}}
+\newcommand\WRaum{Wahrscheinlichkeitsraum\xspace}
+\newcommand\Rho{P}
+
+\newcommand\obda{o.\,B.\,d.\,A.\xspace}
+\newcommand \iid{i.\,i.\,d.\xspace}
+\newcommand\Obda{O.\,B.\,d.\,A.\xspace}
+\newcommand\zB{z.\,B.\xspace}
+\newcommand\st{s.\,t.\xspace}
+\newcommand\stm{ \text{ \st }\; }
+\renewcommand\dh{d.\,h.\xspace}
+\newcommand\Dh{D.\,h.\xspace}
+
+\newcommand\mathstuff{\mathds}
+\newcommand\bitm{\begin{itemize}}
+\newcommand\eitm{\end{itemize}}
+\newcommand\mus{\mu^*}
+\newcommand\var{\mathrm{Var}}
+
+\newcommand\that{{\hat t}}
+\newcommand\tn{{t_0}}
+
+\newcommand\notto{\nrightarrow}
+\newcommand\notra{\nRightarrow}
+
+\newcommand\prodl{\prod\limits}
+\newcommand\xnin{(X_n)_{n\in\N}}
+\newcommand\xninn{(X_n)_{n\in\N_0}}
+\newcommand\nin{{n\in\N}}
+\newcommand\ninn{{n\in\N_0}}
+
+\newcommand\tensor{\oplus}
+\newcommand\om{\omega}
+\newcommand\Om{\Omega}
+
+\newcommand\mA{\mathcal A}
+\newcommand\mB{\mathcal B}
+\newcommand\mD{\mathcal D}
+\newcommand\mE{\mathcal E}
+\newcommand\mF{\mathcal F}
+\newcommand\mM{\mathcal M}
+\newcommand\mN{\mathcal N}
+\newcommand\mO{\mathcal O}
+\newcommand\mI{\mathcal I}
+\newcommand\mL{\mathcal L}
+\newcommand\mX{\mathcal X}
+
+\newcommand\Cay{\mathrm{Cay}}
+
+\newcommand\one{\mathds 1}
+\newcommand\bigcu{\bigcup\limits}
+\newcommand\bigcui{\bigcup\limits_{i\in\N}}
+\newcommand\bigcun{\bigcup\limits_{n\in\N}}
+\newcommand\bigca{\bigcap\limits}
+\newcommand\bigcai{\bigcap\limits_{i\in\N}}
+\newcommand\bigcan{\bigcap\limits_{n\in\N}}
+\newcommand\suml{\sum\limits}
+\newcommand\sumi{\sum\limits_{i\in\N}}
+\newcommand\sumn{\sum\limits_{n\in\N}}
+\newcommand\sumk{\sum\limits_{k\in\N}}
+\newcommand\intl{\int\limits}
+
+\newcommand\Chi{\mathcal{X}}
+\newcommand\cov{\mathrm{cov}}
+\newcommand\vwahr{v_{wahr}}
+\newcommand{\BIGOP}[1]{\mathop{\mathchoice%
+{\raise-0.22em\hbox{\huge $#1$}}%
+{\raise-0.05em\hbox{\Large $#1$}}{\hbox{\large $#1$}}{#1}}}
+\newcommand{\bigtimes}{\BIGOP{\times}}
+% nur fuer Bigboxplus andere Korrekturen
+\newcommand{\BIGboxplus}{\mathop{\mathchoice%
+{\raise-0.35em\hbox{\huge $\boxplus$}}%
+{\raise-0.15em\hbox{\Large $\boxplus$}}{\hbox{\large $\boxplus$}}{\boxplus}}}
+
+\newcommand\zv{Zufallsvariable\xspace}
+\newcommand\vf{Verteilungsfunktion\xspace}
+
+\renewcommand\phi{\varphi}
+%\newcommand\ellipsen{\circledast}
+\newcommand\ellipsen{\diamondsuit}
+\newcommand\bpm{\begin{pmatrix}}
+\newcommand\epm{\end{pmatrix}}
+\newcommand\epsmach{\varepsilon_{mach}}
+\newcommand\diag{\mathrm{diag}}
+\newcommand\ov{\overline}
+\newcommand\orthogonal{\perp}
+\newcommand\Rang{\mathrm{Rg}}
+\newcommand\Range{\mathrm{Range}}
+\newcommand\trace{\mathrm{Sp}}
+\newcommand\Image{\mathrm{Bild}}
+\newcommand\Rg{\mathrm{Rg}}
+\newcommand \tend{{t_{end}}}
+\newcommand\Log{\mathrm{Log}}
+\newcommand\R{\mathstuff{R}}
+\renewcommand\P{\mathstuff{P}}
+\newcommand\Q{\mathstuff{Q}}
+\newcommand\C{\mathstuff{C}}
+\newcommand\E{\mathstuff{E}}
+\newcommand\N{\mathstuff{N}}
+%\renewcommand\H{\mathstuff{H}}
+\newcommand\D{\mathstuff{D}}
+\newcommand\Z{\mathstuff{Z}}
+\newcommand\F{\mathstuff{F}}
+\newcommand\K{\mathstuff{K}}
+\renewcommand\H{\mathstuff{H}}
+\newcommand\Ho{\mathstuff{H}}
+\newcommand\re{\mathrm{Re\,}}
+\newcommand\im{\mathrm{Im\,}}
+\newcommand\argmax{\arg\!\max}
+\newcommand\argmin{\arg\!\min}
+\renewcommand\l{\left}
+\renewcommand\r{\right}
+\newcommand\dt{\,\mathrm dt}
+\newcommand\dd{\,\mathrm d}
+\newcommand\dmu{\,\mathrm d \mu}
+\newcommand\fue{f.\,ü.\xspace}
+\newcommand\fs{f.\,s.\xspace}
+\newcommand\RA{\Rightarrow}
+\newcommand\LA{\Leftarrow}
+\newcommand\LRA{\Leftrightarrow}
+\newcommand\la\langle
+\newcommand\ra\rangle
+\newcommand\End{\mathrm{End}}
+
+\newcommand\salgebra{$\sigma$-Algebra\xspace}
+\newcommand\salgebren{$\sigma$-Algebren\xspace}
+\newcommand\potenz{\mathcal P}
+\newcommand\mP{\mathcal P}
+
+\newcommand\roma{\begin{enumerate}\renewcommand{\labelenumi}{(\roman{enumi})}}
+\newcommand\rome{\end{enumerate}}
+
+\newcommand\bitmn{\begin{enumerate}}
+\newcommand\eitmn{\end{enumerate}}
+
+
+\newcommand\zb{z.\,B.\xspace}
+\newcommand\Zb{Z.\,B.\xspace}
+
+\newcommand\empha{\emph}
+
+\newcommand\eps{\varepsilon}
+
+\newcommand\chaptr[1]{\chapter*{Kapitel #1} \addcontentsline{toc}{chapter}{Kapitel #1}}
+
+\newcommand\msection[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+
+\newcommand\msubsection[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+%\newcommand\msubsubsection[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{:: #1}}
+
+\newcommand\bemerkung[1]{\subsection*{Bemerkung #1}}
+
+\newcommand\definition[1]{\subsection*{Definition #1} \addcontentsline{toc}{subsection}{Definition #1}}
+\newcommand\satz[1]{\subsection*{Satz #1} \addcontentsline{toc}{subsection}{Satz #1}}
+\newcommand\lemma[1]{\subsection*{Lemma #1} \addcontentsline{toc}{subsection}{Lemma #1}}
+\newcommand\korollar[1]{\subsection*{Korollar #1} \addcontentsline{toc}{subsection}{Korollar #1}}
+\newcommand\beweis[1]{\subsection*{Beweis #1}}
+\newcommand\beispiel[1]{\subsection*{Beispiel #1} \addcontentsline{toc}{subsection}{Beispiel #1}}
+\newcommand\beispiele[1]{\subsection*{Beispiele #1} \addcontentsline{toc}{subsection}{Beispiele #1}}
+\newcommand\proposition[1]{\subsection*{Proposition #1} \addcontentsline{toc}{subsection}{Proposition #1}}
+
+\newcommand\upto{\nearrow}
+\newcommand\downto{\searrow}
+\newcommand\qed{q.\,e.\,d.}
+
+\newcommand\msubsubsection[1]{\subsubsection*{#1}}
+
+\newcommand\omfp{(\Om, \mF,\mP)}
+\newcommand\nfty{{n\to\infty}}
+
+\newcommand\tow{\stackrel{\text{w}}\to}
+\newcommand\tod{\stackrel{\text{d}}\to}
+\newcommand\tonfty{\stackrel{n\to \infty}\longrightarrow}
+\newcommand\toP{\stackrel{\P}\to}
+\newcommand\tofs{\stackrel{\text{\fs}}\longrightarrow}
+
+\begin{document}
+
+
+
+
