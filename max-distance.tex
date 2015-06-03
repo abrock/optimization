@@ -105,4 +105,34 @@ Now we can derive a simper, but coarser estimation:
 &= \frac 49 (\|P_1-Q_1\| + \|P_2-Q_2\|)
 \end{align*}
 
+\section{Estimation using matrix norms}
+
+For a matrix $A$ and vector $b$ we have $\|A b\|_2 \leq \|A\|_2 \|b\|_2$ where $\|A\|_2$ denotes the spectral norm of $A$.
+
+We have:
+%
+\begin{align*}
+\|p(t)-q(t)\|_2 &= \|3(1-t)^2 t (P_1-Q_1) + 3 (1-t) t^2 (P_2 - Q_2)\|_2 \\
+&= \l\| \bpm 3(1-t)^2 t & 3(1-t)t^2 \epm \bpm P_1 - Q_1 \\ P_2 - Q_2 \epm \r\|_2 \\
+&= 3 \l\| \underbrace{\bpm (1-t)^2 t & (1-t)t^2 \epm}_{=:A} \underbrace{\bpm P_1 - Q_1 \\ P_2 - Q_2 \epm}_{=: b} \r\|_2 \\
+&\leq 3 \l\| \bpm (1-t)^2 t & (1-t)t^2 \epm \r\|_2 \l\| \bpm P_1 - Q_1 \\ P_2 - Q_2 \epm \r\|_2 \\
+\end{align*}
+%
+For this special matrix the spectral norm is equal to the Euklidean norm of the row $A$, so we need to maximize:
+%
+\begin{align*}
+f(t) :&= ((1-t)^2t)^2 + ((1-t)t^2)^2 
+\end{align*}
+%
+We used a CAS to find that $f$ has only one local maximum in the interval $[0,1]$ at $t=1/2$
+$f(1/2) = 1/32$, so $\|A\|_2 = \sqrt{1/32} = \sqrt{1/2}\sqrt{1/16} = 1/(4\sqrt 2)$.
+Therefore:
+%
+\begin{align*}
+\dist(p,q) &\leq \frac{3}{4\sqrt 2} \l\| \underbrace{\bpm P_1 - Q_1 \\ P_2 - Q_2 \epm}_{=b} \r\|_2
+\end{align*}
+%
+Note that $b$ is in this case a $2\times 2$-matrix, so we need a estimation of its spectral norm.
+Standard estimations are $\sqrt{\|b\|_\infty \cdot \|b\|_1}$ and $\|b\|_F$.
+
 \end{document}
